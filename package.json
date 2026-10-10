@@ -1,10 +1,11 @@
 {
   "name": "@k98kurz/opencode-fixtodo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OpenCode v1 plugin that restores the todoread tool and appends the current todo list to compaction summaries",
   "type": "module",
   "license": "ISC",
   "exports": "./fixtodo.ts",
+  "main": "./fixtodo.ts",
   "files": [
     "fixtodo.ts",
     "readme.md",

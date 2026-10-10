@@ -24,12 +24,14 @@ Add the plugin to your `opencode.json`:
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-fixtodo"]
+  "plugin": ["@k98kurz/opencode-fixtodo"]
 }
 ```
 
 A local checkout works too: use the file path instead, e.g.
-`"./path/to/fixtodo.ts"`.
+`"./path/to/fixtodo.ts"`. Note that if you install this to both the project's
+.opencode/ path and the global and leave the compaction feature enabled, the todo
+list will be appended to each compaction message twice.
 
 ### Configuration
 
@@ -40,7 +42,7 @@ is scoped to the plugin, so keys are flat):
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    ["opencode-fixtodo", { "compaction": false, "tool": true }]
+    ["@k98kurz/opencode-fixtodo", { "compaction": false, "tool": true }]
   ]
 }
 ```
@@ -50,8 +52,8 @@ is scoped to the plugin, so keys are flat):
 | `compaction` | `true`  | Append the current todo list to compaction summary messages.         |
 | `tool`       | `true`  | Register the `todoread` tool so the agent can read the todo list.    |
 
-Both options default to `true`; omit either to keep the default. Config is
-loaded at startup, so restart opencode after changing it.
+Both options default to `true`; omit either to keep the default. Config is loaded
+at startup, so restart opencode after changing it. 
 
 ### Testing
 
