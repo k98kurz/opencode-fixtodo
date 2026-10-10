@@ -1,11 +1,19 @@
 # opencode-fixtodo
 
+This plugin does two things to fix the todo tool system for more utility, either of
+which can be disabled in settings:
+
+1. Restores the `todoread` tool.
+2. Appends the current todo list to the ends of compaction messages.
+
+Hopefully this will be a durable solution. If AnomalyCo ever decides to rip out the
+`todowrite` tool as well, I'll return to this project to fix that mistake as well.
+
 ## Status
 
 Open issues can be tracked [here](https://github.com/k98kurz/opencode-fixtodo/issues).
 Historical changes can be found in the
 [changelog](https://github.com/k98kurz/opencode-fixtodo/blob/master/changelog.md).
-
 
 ## Usage
 
@@ -21,7 +29,7 @@ Add the plugin to your `opencode.json`:
 ```
 
 A local checkout works too: use the file path instead, e.g.
-`"./path/to/todoread.ts"`.
+`"./path/to/fixtodo.ts"`.
 
 ### Configuration
 
@@ -56,6 +64,28 @@ npm run typecheck # tsc --noEmit
 ```
 
 Uses built-in `node:test` runner with Node.js >= 22.18; no external dependencies.
+
+## Why This Exists
+
+Earlier in 2026, AnomalyCo removed the `todoread` tool, which was a mistake that
+they later justified by describing themselves as lemmings following other harness
+devs over a cliff. In my experience, this led to noticeable and detrimental drift
+during long tasks involving compactions, which I was using at the time regularly
+to reduce hallucinations. Prior to this mistake-turned-policy, I had instructions
+directing agents to raed the todo list after every compaction, which helped keep
+them on task during long runs. Performance substantially degraded after they
+accidentally dropped the `todoread` tool and decided to hang everyone out to dry
+with a post-hoc rationalization for an obvious mistake. (And of course, they said
+that it wasn't a problem for them, so it couldn't possibly be a problem to everyone
+complaining about it.)
+
+After I noticed this degradation in agent performance and alignment, I first
+looked through their issue tracker to discover a thin fork restoring the missing
+tool (fadedcode). I used that for a while, but because it was not maintained to
+port fixes, and because AnomalyCo kept changing their API server behaviors, it
+eventually became unusable. My workaround for a while was to add instructions to
+AGENTS.md to use a todo.md file, but then parallel agents clobbered each other
+constantly, so I eventually decided to make this plugin.
 
 ## Contributing
 

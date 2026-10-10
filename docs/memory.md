@@ -4,11 +4,11 @@
   became default there; 22.6–22.17 need `--experimental-strip-types`). Keep
   tests dependency-free: do not add vitest/jest/tsx/`@types/node` unless the
   human asks.
-- `todoread.test.ts` is deliberately outside tsconfig `include`: without
+- `fixtodo.test.ts` is deliberately outside tsconfig `include`: without
   `@types/node` it can't typecheck (`node:test` TS2307) and its
-  `./todoread.ts` import needs `allowImportingTsExtensions` (TS5097). So
+  `./fixtodo.ts` import needs `allowImportingTsExtensions` (TS5097). So
   `npm run typecheck` skips it — tests are the runtime source of truth.
-- `TodoPlugin` only destructures `client`, so test mocks need only
+- `FixtodoPlugin` only destructures `client`, so test mocks need only
   `{ client: { session: { todo, message } } }` cast to `PluginInput`.
 
 # OpenCode v1 plugin development

@@ -1,7 +1,7 @@
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import type { PluginInput } from "@opencode-ai/plugin"
-import { TodoPlugin } from "./todoread.ts"
+import { FixtodoPlugin } from "./fixtodo.ts"
 
 const MARKER = "## Current Todo List"
 
@@ -54,7 +54,7 @@ function makeClient(opts: ClientOptions = {}): {
 }
 
 async function makeHooks(client: Record<string, unknown>, options?: Record<string, unknown>) {
-  return (await TodoPlugin({ client } as unknown as PluginInput, options)) as {
+  return (await FixtodoPlugin({ client } as unknown as PluginInput, options)) as {
     tool?: { todoread: { execute(args: unknown, ctx: unknown): Promise<unknown> } }
     "experimental.text.complete"?: (
       input: { sessionID: string; messageID: string; partID: string },

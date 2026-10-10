@@ -23,7 +23,7 @@ const ICONS: Record<string, string> = {
   cancelled: "[-]",
 }
 
-export const TodoPlugin: Plugin = async ({ client }, options) => {
+export const FixtodoPlugin: Plugin = async ({ client }, options) => {
   const opts = options as FixtodoOptions | undefined
   const compactionEnabled = opts?.compaction ?? true
   const toolEnabled = opts?.tool ?? true

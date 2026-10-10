@@ -4,9 +4,9 @@
   "description": "OpenCode v1 plugin that restores the todoread tool and appends the current todo list to compaction summaries",
   "type": "module",
   "license": "ISC",
-  "exports": "./todoread.ts",
+  "exports": "./fixtodo.ts",
   "files": [
-    "todoread.ts",
+    "fixtodo.ts",
     "readme.md",
     "license"
   ],
