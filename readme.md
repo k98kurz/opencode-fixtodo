@@ -47,11 +47,15 @@ loaded at startup, so restart opencode after changing it.
 
 ### Testing
 
-First, clone the repo, set up ...
+First, clone the repo, then install dependencies and run the tests:
 
 ```bash
-# commands
+npm install
+npm test          # node --test
+npm run typecheck # tsc --noEmit
 ```
+
+Uses built-in `node:test` runner with Node.js >= 22.18; no external dependencies.
 
 ## Contributing
 

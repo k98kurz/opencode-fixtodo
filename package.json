@@ -1,0 +1,31 @@
+{
+  "name": "opencode-fixtodo",
+  "version": "0.0.1",
+  "description": "OpenCode v1 plugin that restores the todoread tool and appends the current todo list to compaction summaries",
+  "type": "module",
+  "license": "ISC",
+  "exports": "./todoread.ts",
+  "files": [
+    "todoread.ts",
+    "readme.md",
+    "license"
+  ],
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "todo"
+  ],
+  "repository": "github:k98kurz/opencode-fixtodo",
+  "bugs": "https://github.com/k98kurz/opencode-fixtodo/issues",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.18.35",
+    "@opencode-ai/sdk": "^1.18.35"
+  },
+  "devDependencies": {
+    "typescript": "5.8.2"
+  }
+}

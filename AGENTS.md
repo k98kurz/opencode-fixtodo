@@ -21,6 +21,7 @@ post-compaction).
   - If you lack access to one of those tools, use a todo.md file.
   - ALWAYS check both todoread and the todo.md file when continuing after compaction.
 - When refactoring, verify that it works with one case before copying throughout.
+- After changing code, run `npm run typecheck` and `npm test`.
 
 # Memory
 

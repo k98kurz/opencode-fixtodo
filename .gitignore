@@ -6,3 +6,4 @@ temp/
 venv*/
 **.sw?
 references/
+node_modules/
