@@ -11,7 +11,39 @@ Historical changes can be found in the
 
 ### Installation
 
-### CLI
+Add the plugin to your `opencode.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["opencode-fixtodo"]
+}
+```
+
+A local checkout works too: use the file path instead, e.g.
+`"./path/to/todoread.ts"`.
+
+### Configuration
+
+Options are passed via the tuple form of the plugin entry (the options object
+is scoped to the plugin, so keys are flat):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    ["opencode-fixtodo", { "compaction": false, "tool": true }]
+  ]
+}
+```
+
+| Option      | Default | Description                                                          |
+| ----------- | ------- | -------------------------------------------------------------------- |
+| `compaction` | `true`  | Append the current todo list to compaction summary messages.         |
+| `tool`       | `true`  | Register the `todoread` tool so the agent can read the todo list.    |
+
+Both options default to `true`; omit either to keep the default. Config is
+loaded at startup, so restart opencode after changing it.
 
 ### Testing
 
