@@ -72,7 +72,7 @@ they later justified by describing themselves as lemmings following other harnes
 devs over a cliff. In my experience, this led to noticeable and detrimental drift
 during long tasks involving compactions, which I was using at the time regularly
 to reduce hallucinations. Prior to this mistake-turned-policy, I had instructions
-directing agents to raed the todo list after every compaction, which helped keep
+directing agents to read the todo list after every compaction, which helped keep
 them on task during long runs. Performance substantially degraded after they
 accidentally dropped the `todoread` tool and decided to hang everyone out to dry
 with a post-hoc rationalization for an obvious mistake. (And of course, they said

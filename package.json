@@ -10,22 +10,32 @@
     "readme.md",
     "license"
   ],
+  "sideEffects": false,
   "keywords": [
     "opencode",
     "opencode-plugin",
     "todo"
   ],
-  "repository": "github:k98kurz/opencode-fixtodo",
-  "bugs": "https://github.com/k98kurz/opencode-fixtodo/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k98kurz/opencode-fixtodo.git"
+  },
+  "homepage": "https://pycelium.com/",
+  "bugs": {
+    "url": "https://github.com/k98kurz/opencode-fixtodo/issues"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --test"
+    "test": "node --test",
+    "publish:npm": "npm publish",
+    "publish:github": "npm publish --registry https://npm.pkg.github.com",
+    "prepublishOnly": "npm run typecheck && npm test"
   },
   "dependencies": {
-    "@opencode-ai/plugin": "^1.18.35",
-    "@opencode-ai/sdk": "^1.18.35"
+    "@opencode-ai/plugin": "^1.18.35"
   },
   "devDependencies": {
+    "@opencode-ai/sdk": "^1.18.35",
     "typescript": "5.8.2"
   }
 }
