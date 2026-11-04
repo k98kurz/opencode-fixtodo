@@ -19,7 +19,14 @@ Historical changes can be found in the
 
 ### Installation
 
-Add the plugin to your `opencode.json`:
+Install via the opencode CLI:
+
+```bash
+opencode plugin @k98kurz/opencode-fixtodo
+```
+
+This installs the plugin and adds it to your `opencode.json`. Alternatively, add
+it manually:
 
 ```json
 {
@@ -47,10 +54,11 @@ is scoped to the plugin, so keys are flat):
 }
 ```
 
-| Option      | Default | Description                                                          |
-| ----------- | ------- | -------------------------------------------------------------------- |
-| `compaction` | `true`  | Append the current todo list to compaction summary messages.         |
-| `tool`       | `true`  | Register the `todoread` tool so the agent can read the todo list.    |
+| Option                | Default   | Description                                                                                     |
+| --------------------- | --------- | ----------------------------------------------------------------------------------------------- |
+| `compaction`           | `true`    | Append the current todo list to compaction summary messages.                                    |
+| `tool`                 | `true`    | Register the `todoread` tool so the agent can read the todo list.                               |
+| `maxSummaryCacheEntries` | `10000`  | Upper bound on in-memory compaction-summary classification cache. Keeps memory bounded in long-running processes. |
 
 Both options default to `true`; omit either to keep the default. Config is loaded
 at startup, so restart opencode after changing it. 

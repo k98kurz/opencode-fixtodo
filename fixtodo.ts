@@ -10,10 +10,12 @@ Usage:
 - If no todos exist yet, an empty list will be returned`
 
 const MARKER = "## Current Todo List"
+const MAX_SUMMARY_CACHE_ENTRIES = 10_000
 
 interface FixtodoOptions {
   compaction?: boolean
   tool?: boolean
+  maxSummaryCacheEntries?: number
 }
 
 const ICONS: Record<string, string> = {
@@ -27,9 +29,12 @@ export const FixtodoPlugin: Plugin = async ({ client }, options) => {
   const opts = options as FixtodoOptions | undefined
   const compactionEnabled = opts?.compaction ?? true
   const toolEnabled = opts?.tool ?? true
+  const maxEntries = opts?.maxSummaryCacheEntries ?? MAX_SUMMARY_CACHE_ENTRIES
 
-  // messageID -> whether the message is a compaction summary; negative results are
-  // cached so ordinary turns cost at most one local GET per assistant message
+  // messageID -> whether the message is a compaction summary; cached so ordinary
+  // turns cost at most one local GET per message. Bounded to the last
+  // MAX_SUMMARY_CACHE_ENTRIES entries (Map preserves insertion order, so keys()[0]
+  // is the oldest).
   const summaries = new Map<string, boolean>()
 
   return {
@@ -80,6 +85,10 @@ export const FixtodoPlugin: Plugin = async ({ client }, options) => {
                 if (!res.data) return
                 const info: Message = res.data.info
                 known = info.role === "assistant" && info.mode === "compaction" && info.summary === true
+                if (summaries.size >= maxEntries) {
+                  const oldestKey = [...summaries.keys()][0]
+                  if (oldestKey !== undefined) summaries.delete(oldestKey)
+                }
                 summaries.set(input.messageID, known)
                 parts = res.data.parts
               }

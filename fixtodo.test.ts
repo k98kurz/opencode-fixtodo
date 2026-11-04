@@ -280,4 +280,20 @@ describe("summary cache", () => {
     assert.equal(calls.message, 1, "negative result must be cached — no second GET")
     assert.equal(calls.todo, 0)
   })
+
+  it("evicts the oldest entry once the cache exceeds the cap", async () => {
+    const { client, calls } = makeClient({ info: SUMMARY_INFO, todos: [todo("pending", "task")] })
+    const hooks = await makeHooks(client, { maxSummaryCacheEntries: 3 })
+
+    // Four distinct compaction summaries; cap is 3, so the first is evicted when the
+    // fourth is inserted (Map preserves insertion order, keys()[0] is oldest).
+    for (const id of ["a", "b", "c", "d"]) {
+      await runHook(hooks, id).promise
+    }
+    assert.equal(calls.message, 4, "each fresh summary costs exactly one GET")
+
+    // "a" was evicted, so re-running it must fetch again rather than hit the cache.
+    await runHook(hooks, "a").promise
+    assert.equal(calls.message, 5, "evicted entry must be re-fetched, not served from cache")
+  })
 })
