@@ -6,6 +6,9 @@
   "license": "ISC",
   "exports": "./fixtodo.ts",
   "main": "./fixtodo.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "fixtodo.ts",
     "readme.md",
